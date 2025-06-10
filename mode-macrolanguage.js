@@ -16,6 +16,25 @@ oop.inherits(Mode, TextMode);
     this.createWorker = function(session) {
         return null;
     };
+	
+    // Ajoute cette fonction :
+    this.getCompletions = function(editor, session, pos, prefix, callback) {
+        // Liste simple d’exemple à enrichir
+        var completions = [
+            {value: "SI", meta: "keyword"},
+            {value: "ALORS", meta: "keyword"},
+            {value: "FINSI", meta: "keyword"}
+        ];
+        // Si tu as déjà une liste de mots-clés, tu peux la parcourir ici !
+        callback(null, completions.map(function(w) {
+            return {
+                caption: w.value,
+                value: w.value,
+                meta: w.meta,
+                score: 1000
+            };
+        }));
+    };
 
 }).call(Mode.prototype);
 
